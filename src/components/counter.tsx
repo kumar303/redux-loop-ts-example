@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { saveCount, loadCount, incrementCounter, Action } from '../actions/';
 import { All } from '../reducers/';
 
@@ -57,7 +57,7 @@ function mapStateToProps(state: All): StateProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<All>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   return bindActionCreators(
     {
       loadCount: loadCount,
@@ -68,7 +68,7 @@ function mapDispatchToProps(dispatch: Dispatch<All>): DispatchProps {
   );
 }
 
-export const CounterContainer = connect<StateProps, DispatchProps, OwnProps>(
+export const CounterContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CounterContainerComponent);

@@ -3,13 +3,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { install, StoreCreator } from 'redux-loop';
-import { initialState, reducer } from './reducers';
+import { All, initialState, reducer } from './reducers';
 
 import { CounterContainer } from './components/counter';
 
 const enhancedCreateStore = createStore as StoreCreator;
 
-let enhancer = compose(install());
+let enhancer = compose(install<All>());
 
 if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION__) {
   enhancer = compose(

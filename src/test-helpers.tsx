@@ -1,15 +1,14 @@
 import * as React from 'react';
 import * as shallowRenderer from 'react-test-renderer/shallow';
-import { All, initialState } from './reducers/index';
+import { All, initialState, reducer } from './reducers';
 import { Provider } from 'react-redux';
 import * as deepRenderer from 'react-test-renderer';
 import { createStore, compose } from 'redux';
 import { install, StoreCreator } from 'redux-loop';
-import { reducer } from './reducers/index';
 
 const enhancedCreateStore = createStore as StoreCreator;
 
-const enhancer = compose(install());
+const enhancer = compose(install<All>());
 const store = enhancedCreateStore(reducer, initialState, enhancer);
 // tslint:disable-next-line no-any
 type TestComponent = React.ReactElement<any>;
